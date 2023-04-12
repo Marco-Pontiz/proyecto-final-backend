@@ -1,5 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcryptjs');
 
 const User = require('../models/user.js')
 
@@ -25,7 +26,7 @@ passport.use('local-signup', new LocalStrategy({
     user.nombre = req.body.nombre,
     user.numero = req.body.numero,
     user.email = req.body.email,
-    user.password = req.body.password,
+    user.password = bcrypt.hashSync(req.body.password, 10),
     await user.save();
     done(null, user);
 }));
