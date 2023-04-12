@@ -8,18 +8,13 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-    await User.findById(id)
-    done(null, user);
-})
-
-passport.serializeUser((user, done) => {
-    done(null, user.id);
+    try {
+        const user = await User.findById(id);
+        done(null, user); // Devolvemos el usuario recuperado
+    } catch (error) {
+        done(error);
+    }
 });
-
-passport.deserializeUser( async (id, done) => {
-    const user = await User.findById(id);
-    done(null, user);
-}); 
 
 passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
