@@ -22,15 +22,15 @@ passport.deserializeUser( async (id, done) => {
 }); 
 
 passport.use('local-signup', new LocalStrategy({
-    emailField: 'email',
+    usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true
 }, async (req, nombre, numero, email, password, done) => {
     const user = new User();
-    user.nombre = nombre,
-    user.numero = numero,
-    user.email = email,
-    user.password = password,
+    user.nombre = req.body.nombre,
+    user.numero = req.body.numero,
+    user.email = req.body.email,
+    user.password = req.body.password,
     await user.save();
     done(null, user);
 }));
