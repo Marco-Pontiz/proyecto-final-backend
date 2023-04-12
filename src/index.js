@@ -11,10 +11,11 @@ require('./database.js');
 require('./passport/local-auth.js')
 
 //Setting
-app.set('views', path.join(__dirname, 'views'));
-app.engine(`html`, engine);
-app.set(`view engine`, `html`);
 app.set(`PORT`, 8080);
+app.engine(`html`, engine);
+app.set('views', path.join(__dirname, 'views'));
+app.set(`view engine`, `html`);
+
 
 //middleware
 app.use(morgan(`dev`));
@@ -33,4 +34,5 @@ app.use('/', require('./routes/index.js'));
 //Starting the server
 app.listen(app.get(`PORT`), () => {
     console.log(`Server en el puerto:`, app.get(`PORT`));
+    console.log(`http://localhost:8080`);
 });

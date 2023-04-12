@@ -22,8 +22,6 @@ passport.deserializeUser( async (id, done) => {
 }); 
 
 passport.use('local-signup', new LocalStrategy({
-    nombreField: 'nombre',
-    numeroField: 'numero',
     emailField: 'email',
     passwordField: 'password',
     passReqToCallback: true
