@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Product = require('../models/product.js')
 
 const passport = require('passport');
 
@@ -17,13 +18,28 @@ router.post('/signup', passport.authenticate('local-signup', {
     passReqToCallback: true
 }));
 
-router.get('/signin', (req, res, next) => {
+router.get('/productos', (req, res) => {
+    res.render('product.html')
+})
 
-});
+router.post('/api/productos', (req, res) => {
+    console.log('POST /productos')
+    console.log(req.body)
 
-router.post('/signin', (req, res, next) => {
+    let product = new Product()
+    product.nombre = req.body.nombre,
+    product.descripcion = req.body.descripcion,
+    product.price = req.body.price
+    
+    product.save()
+    .then(function(productStored) {
+    res.status(200).send({product: productStored});
+    })
+    .catch(function(err) {
+    res.status(500).send({message: `Error al guardar el producto ${err}`});
+    });
 
-});
+})
 
 router.get('/profile', (req, res, next) =>{
     res.render('profile.html');
