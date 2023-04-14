@@ -38,6 +38,19 @@ router.post('/api/productos', (req, res) => {
 
 })
 
+router.get("/api/productos", async(req, res) => {
+    try{
+        //Obtener todos los productos de la base de datos
+        const productos = await Producto.find();
+        console.log(productos)
+        //Renderiza la vista previa en HTML con los datos de los productos
+        res.render('product.html',{root:'src/views'}, {productos});
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Ocurrió un error')
+    }
+});
+
 router.get('/profile', (req, res, next) =>{
     res.render('profile.html');
 });
