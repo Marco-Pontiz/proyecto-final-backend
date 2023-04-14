@@ -20,6 +20,7 @@ app.set(`view engine`, `html`);
 //middleware
 app.use(morgan(`dev`));
 app.use(express.urlencoded({extended: false}));
+app.use(express.static('src'))
 app.use(session({
     secret: 'mysecretsession',
     resave: false,
