@@ -9,14 +9,29 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-light bg-light">
-            <a href="/" class="navbar-brand">
-                <h1>Productos que deseas añadir?</h1>
-            </a>
+        <h1>Productos</h1>
         </nav>
     </header>
     <main>
-        
+        <h2>Juegos disponibles para comprar</h2>
+            <table>
+                    <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Price</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos %}
+                        <tr>
+                            <td>{{producto.nombre}}</td>
+                            <td>{{producto.descripcion}}</td>
+                            <td>{{producto.price}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>
     </main>
     <footer></footer>
 </body>

@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 // Conectar a la base de datos
-mongoose.connect('mongodb://localhost:27017/mi-base-de-datos', {
+mongoose.connect('mongodb://localhost:27017/products', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -47,9 +47,9 @@ app.get('/productos', async(req, res) => {
     try{
         //Obtener todos los productos de la base de datos
         const productos = await Producto.find();
-        
+
         //Renderiza la vista previa en HTML con los datos de los productos
-        res.render('product.html', {productos});
+        res.render('product.html',{root:'src/views'}, {productos});
     } catch (error) {
         console.error(error);
         res.status(500).send('Ocurrió un error')
