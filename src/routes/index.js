@@ -18,9 +18,6 @@ router.post('/signup', passport.authenticate('local-signup', {
     passReqToCallback: true
 }));
 
-router.get('/productos', (req, res) => {
-    res.render('product.html')
-})
 
 router.post('/api/productos', (req, res) => {
     console.log('POST /productos')

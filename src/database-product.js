@@ -24,7 +24,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Manejar la solicitud de creación de nuevos productos
 app.post('/productos', async (req, res) => {
     const { nombre, descripcion, price } = req.body;
-
     try {
     // Crear un nuevo producto
     const producto = new Producto({
@@ -42,4 +41,17 @@ app.post('/productos', async (req, res) => {
     console.error(error);
     res.status(500).send('Ha ocurrido un error');
 }
+});
+
+app.get('/productos', async(req, res) => {
+    try{
+        //Obtener todos los productos de la base de datos
+        const productos = await Producto.find();
+        
+        //Renderiza la vista previa en HTML con los datos de los productos
+        res.render('product.html', {productos});
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Ocurrió un error')
+    }
 });
