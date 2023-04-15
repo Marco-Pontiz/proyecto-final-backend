@@ -13,9 +13,12 @@ require('./passport/local-auth.js')
 //Setting
 app.set(`PORT`, 8080);
 app.engine(`html`, engine);
+app.engine(`hbs`, engine);
+app.engine(`ejs`, engine)
 app.set('views', path.join(__dirname,'views'));
 app.set(`view engine`, `html`);
-app.set(`view engine`, `ejs`)
+app.set(`view engine`, `ejs`);
+app.set('vies engine', 'hbs');
 
 
 //middleware
