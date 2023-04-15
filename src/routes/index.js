@@ -6,11 +6,11 @@ const path = require('path');
 const passport = require('passport');
 
 router.get('/', (req, res, next) => {
-    res.render('index.html')
+    res.render('index.ejs')
 });
 
 router.get('/signup', (req, res, next) => {
-    res.render('signup.html');
+    res.render('signup.ejs');
 });
 
 router.post('/signup', passport.authenticate('local-signup', {
@@ -45,7 +45,7 @@ router.get("/api/productos", async(req, res) => {
         const productos = await Product.find();
         console.log(productos)
         //Renderiza la vista previa en HTML con los datos de los productos
-        res.render('product.html', {productos});
+        res.render('product', productos);
     } catch (error) {
         console.error(error);
         res.status(500).send('Ocurrió un error')
@@ -53,7 +53,7 @@ router.get("/api/productos", async(req, res) => {
 });
 
 router.get('/profile', (req, res, next) =>{
-    res.render('profile.html');
+    res.render('profile.ejs');
 });
 
 module.exports = router;

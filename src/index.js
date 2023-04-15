@@ -4,7 +4,7 @@ const path = require(`path`);
 const morgan = require(`morgan`);
 const passport = require('passport');
 const session = require('express-session');
-
+const ejs = require('ejs')
 
 const app = express();
 require('./database.js');
@@ -15,6 +15,7 @@ app.set(`PORT`, 8080);
 app.engine(`html`, engine);
 app.set('views', path.join(__dirname,'views'));
 app.set(`view engine`, `html`);
+app.set(`view engine`, `ejs`)
 
 
 //middleware
