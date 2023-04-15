@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/product.js')
+const path = require('path');
 
 const passport = require('passport');
 
@@ -44,7 +45,7 @@ router.get("/api/productos", async(req, res) => {
         const productos = await Product.find();
         console.log(productos)
         //Renderiza la vista previa en HTML con los datos de los productos
-        res.render('product.html',{root:'src/views'}, {productos});
+        res.render('product.html', {productos});
     } catch (error) {
         console.error(error);
         res.status(500).send('Ocurrió un error')
