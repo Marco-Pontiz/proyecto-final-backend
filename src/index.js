@@ -12,12 +12,8 @@ require('./passport/local-auth.js')
 
 //Setting
 app.set(`PORT`, 8080);
-app.engine(`html`, engine);
 app.engine(`hbs`, engine);
-app.engine(`ejs`, engine)
 app.set('views', path.join(__dirname,'views'));
-app.set(`view engine`, `html`);
-app.set(`view engine`, `ejs`);
 app.set('vies engine', 'hbs');
 
 
@@ -25,6 +21,7 @@ app.set('vies engine', 'hbs');
 app.use(morgan(`dev`));
 app.use(express.urlencoded({extended: false}));
 app.use(express.static('src'))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(session({
     secret: 'mysecretsession',
     resave: false,
