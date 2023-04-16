@@ -20,7 +20,22 @@ function createSendMailEthereal() {
     });
 }
 
-const sendMail = createSendMailEthereal();
+const usermail = xxxxxx
+const password = xxxxxx
+
+function createSendMailGmail(){
+    return createSendMail({
+        host: 'smtp.gmail.com',
+        port: 587,
+        auth: {
+            user: usermail,
+            pass: password
+        }
+    })
+}
+
+//const sendMail = createSendMailEthereal();
+const sendMail = createSendMailGmail();
 
 const emailAccount = 'Websitte@gmail.com';
 const emailSubject = 'Compra realizada';
