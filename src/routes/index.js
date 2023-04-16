@@ -44,9 +44,14 @@ router.get("/api/productos", async(req, res) => {
         //Obtener todos los productos de la base de datos
         const productos = await Product.find();
         console.log(productos)
+
         //Renderiza la vista previa en HTML con los datos de los productos
-        res.render('product.hbs', {
-            data: productos.find(u => u.username === req.product.username)
+        res.render('product', {
+            data: {
+                nombre: productos.map(product => [product.nombre]),
+                descripcion: productos.map(product => [product.descripcion]),
+                price: productos.map(product => [product.price])
+            }
         });
     } catch (error) {
         console.error(error);

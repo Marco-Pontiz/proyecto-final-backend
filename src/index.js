@@ -5,6 +5,7 @@ const morgan = require(`morgan`);
 const passport = require('passport');
 const session = require('express-session');
 const ejs = require('ejs')
+const exphbs = require('express-handlebars');
 
 const app = express();
 require('./database.js');
@@ -12,9 +13,10 @@ require('./passport/local-auth.js')
 
 //Setting
 app.set(`PORT`, 8080);
-app.engine(`hbs`, engine);
+app.engine('.hbs', exphbs({ extname: '.hbs', defaultLayout: 'main.hbs' }));
+
+app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname,'views'));
-app.set('vies engine', 'hbs');
 
 
 //middleware
