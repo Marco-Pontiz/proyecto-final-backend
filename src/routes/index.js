@@ -61,7 +61,7 @@ router.get("/productos", async(req, res) => {
 
 /*
 router.post('/carrito', (req, res) => {
-    console.log('POST /productos')
+    console.log('POST /cart')
     console.log(req.body)
 
     let product = new Product()
@@ -87,7 +87,7 @@ router.get("/carrito", async(req, res) => {
         console.log(productos)
 
         //Renderiza la vista previa en HTML con los datos de los productos
-        res.render('product', {
+        res.render('cart', {
             data: {
                 nombre: productos.map(product => [product.nombre]),
                 descripcion: productos.map(product => [product.descripcion]),
