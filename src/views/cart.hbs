@@ -1,0 +1,17 @@
+<h2>Su carrito de compra</h2>
+    <table>
+            <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Price</th>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {{#each data.nombre}}<td style="width: 200px; display: flex; flex-direction: column">{{this}}</td>{{/each}}
+                    {{#each data.descripcion}}<td style="min-width: 400px; text-align:justify;">{{this}}</td>{{/each}}
+                    {{#each data.price}}<td style="width: 200px; text-align:center; display: flex; flex-direction: column">{{this}}</td>{{/each}}
+                </tr>
+            </tbody>
+    </table>
