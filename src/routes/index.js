@@ -59,7 +59,7 @@ router.get("/productos", async(req, res) => {
     }
 });
 
-/*
+
 router.post('/carrito', (req, res) => {
     console.log('POST /cart')
     console.log(req.body)
@@ -78,8 +78,8 @@ router.post('/carrito', (req, res) => {
     });
 
 })
-*/
-/*
+
+
 router.get("/carrito", async(req, res) => {
     try{
         //Obtener todos los productos de la base de datos
@@ -99,7 +99,7 @@ router.get("/carrito", async(req, res) => {
         res.status(500).send('Ocurrió un error')
     }
 });
-*/
+
 
 router.get('/profile', (req, res, next) =>{
     res.render('profile.hbs');

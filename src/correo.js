@@ -9,6 +9,7 @@ function createSendMail(mailConfig){
     }
 }
 
+/* Ethereal
 function createSendMailEthereal() {
     return createSendMail({
         host: 'smtp.ethereal.email',
@@ -19,9 +20,11 @@ function createSendMailEthereal() {
         }
     });
 }
+*/
 
-const usermail = xxxxxx
-const password = xxxxxx
+// Gmail - carrito
+const usermail = xxxxxx;
+const password = xxxxxx;
 
 function createSendMailGmail(){
     return createSendMail({
