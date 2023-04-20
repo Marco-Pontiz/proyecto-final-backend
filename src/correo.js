@@ -1,63 +1,49 @@
 const nodemailer = require('nodemailer');
 
-function createSendMail(mailConfig){
+function createSendMail(mailConfig) {
     const transporter = nodemailer.createTransport(mailConfig);
 
-    return function sendMail({to, subject, text, html, attachments}){
-        const mailOptions = {from: mailConfig.auth.user, to , subject, text, html, attachments};
+    return function sendMail ({to, subject, text, html, attachments}) {
+        const mailOptions = {from: mailConfig.auth.user, to, subject, text, html, attachments};
         return transporter.sendMail(mailOptions);
     }
 }
 
-/* Ethereal
-function createSendMailEthereal() {
-    return createSendMail({
-        host: 'smtp.ethereal.email',
-        port: xxx,
-        auth:{
-            user: 'xxxxxxxxxxxxxxxx',
-            pass: 'xxxxxxxxxxxxxxxx'
-        }
-    });
-}
-*/
+const Gmail_UserName = 'xxxxxxxxxx';
+const Gmail_Password = 'xxxxxxxxxx';
 
-// Gmail - carrito
-const usermail = xxxxxx;
-const password = xxxxxx;
-
-function createSendMailGmail(){
+function createSendMailGmail() {
     return createSendMail({
         host: 'smtp.gmail.com',
         port: 587,
         auth: {
-            user: usermail,
-            pass: password
+            user: Gmail_UserName,
+            pass: Gmail_Password,
         }
     })
 }
 
-//const sendMail = createSendMailEthereal();
-const sendMail = createSendMailGmail();
-
-const emailAccount = 'Websitte@gmail.com';
-const emailSubject = 'Compra realizada';
-const emailText = 'Gracias por tu compra! Avisanos si el producto que compraste es de tu agrado';
-const attachmentsPath = '';
-const emailAttachments = [];
-
-if(attachmentsPath) {
-    emailAttachments.push({path: attachmentsPath})
-}
-
 async function main() {
-const info = await sendMail({
-    to:emailAccount,
-    subject: emailSubject,
-    text: emailText,
-    attachments: emailAttachments});
+    const sendMail = await createSendMailGmail();
 
-console.log(info);
+    const emailAccount = 'xxxxxxx@gmail.com';
+    const emailSubject = 'Bienvenid@!';
+    const emailText = 'Hola! Gracias por comprar nuestros productos!';
+    const attachmentsPath = '';
+    const emailAttachments = [];
+
+    if(attachmentsPath) {
+        emailAttachments.push({path: attachmentsPath});
+    }
+
+    const info = await sendMail({
+        to: emailAccount,
+        subject: emailSubject,
+        text: emailText,
+        attachments: emailAttachments
+    });
+
+    console.log(info);
 }
 
 main();
