@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/product.js');
 const path = require('path');
+const main = require("../correo.js");
 
 const passport = require('passport');
 
@@ -59,10 +60,11 @@ router.get("/productos", async(req, res) => {
     }
 });
 
-
 router.post('/carrito', (req, res) => {
-    console.log('POST /cart')
+    console.log('POST /carrito')
     console.log(req.body)
+
+    main();
 
     let product = new Product()
     product.nombre = req.body.nombre,
@@ -82,11 +84,9 @@ router.post('/carrito', (req, res) => {
 
 router.get("/carrito", async(req, res) => {
     try{
-        //Obtener todos los productos de la base de datos
         const productos = await Product.find();
         console.log(productos)
 
-        //Renderiza la vista previa en HTML con los datos de los productos
         res.render('cart', {
             data: {
                 nombre: productos.map(product => [product.nombre]),

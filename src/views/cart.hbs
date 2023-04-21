@@ -16,8 +16,27 @@
             </tbody>
     </table>
 
-    <form id="email-form">
-        <input type="email" id="email", name="email" placeholder="Ingrese su email">
-        <button id="miboton" onclick="enviarCorreo()">Comprar</button>
-        <script src="../correo.js"></script>
-    </form>
+<form action="http://localhost:8080/carrito" id="email-cart" method="POST">
+
+    <input type="email" id="email" name="email" placeholder="Ingrese su email">
+    <button type="button" onclick="main()">Capturar</button>
+    <button type="submit" id="miboton" >Comprar</button>
+
+    <script src="../correo.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+    <script>
+        /* Este codigo no funciona, lo borraré en breve
+        function sendEmail(){
+            Email.send({
+                Host: 'smtp.elasticemail.com',
+                Username: "marcopontiz@gmail.com",
+                Password: 'ijgw tmtf reux zryt',
+                To: 'marcopontiz@gmail.com',
+                From: document.getElementById("email").value;
+                Subject: 'Hola! Gracias por comprar nuestros productos!',
+            })
+        }
+        */
+    </script>
+</form>
