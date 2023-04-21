@@ -32,7 +32,7 @@ function createSendMailGmail() {
         port: 587,
         auth: {
             user: 'marcopontiz@gmail.com',
-            pass: 'ukepqubakfufsoek',
+            pass: 'xxxxxxxxxxxxx',
         }
     })
 }
