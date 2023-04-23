@@ -1,44 +1,46 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const { mongodb } = require('./keys');
 
 // Conectar a la base de datos
-mongoose.connect('mongodb://localhost:27017/products', {
+mongoose.connect(mongodb.URI_ATLAS, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
 // Definir el modelo de producto
 const productoSchema = new mongoose.Schema({
-    nombre: String,
-    descripcion: String,
-    price: Number,
+    nombre: {type: String},
+    descripcion: {type: String},
+    price: {type: Number},
 });
 
-const Producto = mongoose.model('Producto', productoSchema);
+const Producto = mongoose.model('Productos', productoSchema);
 
-// Configurar el servidor
-const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
+module.exports = Producto;
 
 // Manejar la solicitud de creación de nuevos productos
-app.post('/productos', async (req, res) => {
-    const { nombre, descripcion, price } = req.body;
-    try {
-    // Crear un nuevo producto
-    const producto = new Producto({
-        nombre,
-        descripcion,
-        price,
-    });
+// app.post('/productos', async (req, res) => {
+//     const { nombre, descripcion, price } = req.body;
+//     console.log("ENTRO AL POST DE PRODUCTOS")
+//     try {
+//     // Crear un nuevo producto
+//     const producto = new Producto(
+//         nombre,
+//         descripcion,
+//         price,
+//     );
 
-    // Guardar el producto en la base de datos
-    await producto.save();
+//     console.log(producto);
 
-    // Redirigir a la página principal
-    res.redirect('/');
-} catch (error) {
-    console.error(error);
-    res.status(500).send('Ha ocurrido un error');
-}
-});
+//     // Guardar el producto en la base de datos
+//     await producto.save();
+
+//     // Redirigir a la página principal
+//     res.redirect('/');
+// } catch (error) {
+//     console.error(error);
+//     res.status(500).send('Ha ocurrido un error');
+// }
+// });

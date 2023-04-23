@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/product.js');
+// const Product = require('../models/product.js');
 const path = require('path');
 const main = require("../correo.js");
+const Product = require("../database-product.js");
 
 const passport = require('passport');
 
@@ -21,22 +22,39 @@ router.post('/signup', passport.authenticate('local-signup', {
 }));
 
 
-router.post('/productos', (req, res) => {
-    console.log('POST /productos')
-    console.log(req.body)
+router.post('/productos', async (req, res) => {
+    try {
+        const getProducto = req.body;
+        
+        let newProduct = new Product({
+            nombre: getProducto.nombre,
+            descripcion: getProducto.descripcion,
+            price: getProducto.price
+        });
 
-    let product = new Product()
-    product.nombre = req.body.nombre,
-    product.descripcion = req.body.descripcion,
-    product.price = req.body.price
+        await newProduct.save();
+
+        console.log(newProduct);
+
+        
+    }
+
+    catch (err) {
+        console.log(err);
+    }
+
+    // let product = new Product()
+    // product.nombre = req.body.nombre,
+    // product.descripcion = req.body.descripcion,
+    // product.price = req.body.price
     
-    product.save()
-    .then(function(productStored) {
-    res.status(200).send({product: productStored});
-    })
-    .catch(function(err) {
-    res.status(500).send({message: `Error al guardar el producto ${err}`});
-    });
+    // await product.save()
+    // .then(function(productStored) {
+    // res.status(200).send({product: productStored});
+    // })
+    // .catch(function(err) {
+    // res.status(500).send({message: `Error al guardar el producto ${err}`});
+    // });
 
 })
 
